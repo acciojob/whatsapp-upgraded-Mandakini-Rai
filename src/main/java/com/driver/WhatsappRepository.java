@@ -153,7 +153,7 @@ public class WhatsappRepository {
             }
             updatedMsgsInList.add(message);
         }
-        messageList=updatedMsgsInList;
+//        messageList=updatedMsgsInList;
 
 
 
@@ -161,7 +161,7 @@ public class WhatsappRepository {
 
         userMessageList.remove(user);
 
-        return groupHashMap.get(group1).size()+messagesInGroup.get(group1).size()+messageList.size();
+        return groupHashMap.get(group1).size()+messagesInGroup.get(group1).size()+updatedMsgsInList.size();
 
     }
     public String findMessage(Date start, Date end, int K) throws Exception{
