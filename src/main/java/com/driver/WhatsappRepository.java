@@ -146,11 +146,16 @@ public class WhatsappRepository {
             messagesInGroup.put(group1,updatedMsgsIngroup);
 
          List<Message> updatedMsgsInList = new ArrayList<>();
-        for(Message message:messageList){
-            if(!userMessages.contains(message)){
+//        for(Message message:messagesInGroup.get(group1)){
+//            if(!userMessages.contains(message)){
+//                updatedMsgsInList.add(message);
+//            }
+//
+//        }
+        for(List<Message> messages : messagesInGroup.values()){
+            for(Message message : messages){
                 updatedMsgsInList.add(message);
             }
-
         }
         messageList=updatedMsgsInList;
 
