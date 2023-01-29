@@ -33,7 +33,7 @@ public class WhatsappRepository {
              groupHashMap.put(group,users);
              return group;
          }
-         Group group = new Group("Group"+ ++groupCount,users.size());
+        Group group=new Group("Group "+ ++groupCount,users.size());
         groupHashMap.put(group,users);
         return group;
     }
