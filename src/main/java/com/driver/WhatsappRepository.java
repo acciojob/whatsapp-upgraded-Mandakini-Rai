@@ -136,32 +136,42 @@ public class WhatsappRepository {
         }
 
         List<Message> userMessages=userMessageList.get(user);
+//
+//        List<Message> updatedMsgsIngroup = new ArrayList<>();
+//            for(Message message:messagesInGroup.get(group1)){
+//                if(userMessages.contains(message)){
+//                       continue;
+//                }
+//                updatedMsgsIngroup.add(message);
+//            }
+//            messagesInGroup.put(group1,updatedMsgsIngroup);
+//
+//         List<Message> updatedMsgsInList = new ArrayList<>();
+//        for(Message message:messageList){
+//            if(userMessages.contains(message)){
+//                continue;
+//            }
+//            updatedMsgsInList.add(message);
+//        }
+//        messageList=updatedMsgsInList;
 
-        List<Message> updatedMsgsIngroup = new ArrayList<>();
             for(Message message:messagesInGroup.get(group1)){
                 if(userMessages.contains(message)){
-                       continue;
+                    messagesInGroup.get(group1).remove(message);
                 }
-                updatedMsgsIngroup.add(message);
             }
-            messagesInGroup.put(group1,updatedMsgsIngroup);
-
-         List<Message> updatedMsgsInList = new ArrayList<>();
-        for(Message message:messageList){
+            for(Message message:messageList){
             if(userMessages.contains(message)){
-                continue;
+                messageList.remove(message);
             }
-            updatedMsgsInList.add(message);
         }
-        messageList=updatedMsgsInList;
-
 
 
         groupHashMap.get(group1).remove(user);
 
         userMessageList.remove(user);
 
-        return groupHashMap.get(group1).size()+messagesInGroup.get(group1).size()+messageList.size()-2;
+        return groupHashMap.get(group1).size()+messagesInGroup.get(group1).size()+messageList.size();
 
     }
     public String findMessage(Date start, Date end, int K) throws Exception{
