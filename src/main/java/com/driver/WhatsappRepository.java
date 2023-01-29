@@ -137,41 +137,40 @@ public class WhatsappRepository {
 
         List<Message> userMessages=userMessageList.get(user);
 //
-//        List<Message> updatedMsgsIngroup = new ArrayList<>();
-//            for(Message message:messagesInGroup.get(group1)){
-//                if(userMessages.contains(message)){
-//                       continue;
-//                }
-//                updatedMsgsIngroup.add(message);
-//            }
-//            messagesInGroup.put(group1,updatedMsgsIngroup);
-//
-//         List<Message> updatedMsgsInList = new ArrayList<>();
-//        for(Message message:messageList){
-//            if(userMessages.contains(message)){
-//                continue;
-//            }
-//            updatedMsgsInList.add(message);
-//        }
-//        messageList=updatedMsgsInList;
-
+        List<Message> updatedMsgsIngroup = new ArrayList<>();
             for(Message message:messagesInGroup.get(group1)){
-                if(userMessages.contains(message)){
-                    messagesInGroup.get(group1).remove(message);
+                if(!userMessages.contains(message)){
+                       updatedMsgsIngroup.add(message);
                 }
             }
-            for(Message message:messageList){
-            if(userMessages.contains(message)){
-                messageList.remove(message);
+            messagesInGroup.put(group1,updatedMsgsIngroup);
+
+         List<Message> updatedMsgsInList = new ArrayList<>();
+        for(Message message:messageList){
+            if(!userMessages.contains(message)){
+                updatedMsgsInList.add(message);
             }
+
         }
+        messageList=updatedMsgsInList;
+
+//            for(Message message:messagesInGroup.get(group1)){
+//                if(userMessages.contains(message)){
+//                    messagesInGroup.get(group1).remove(message);
+//                }
+//            }
+//            for(Message message:messageList){
+//            if(userMessages.contains(message)){
+//                messageList.remove(message);
+//            }
+//        }
 
 
         groupHashMap.get(group1).remove(user);
 
         userMessageList.remove(user);
 
-        return groupHashMap.get(group1).size()+messagesInGroup.get(group1).size()+messageList.size();
+        return groupHashMap.get(group1).size()+messagesInGroup.get(group1).size()+updatedMsgsInList.size();
 
     }
     public String findMessage(Date start, Date end, int K) throws Exception{
